@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const verifyToken = async (token) => {
+export const verifyToken = async (token) => {
   console.log(token, "token");
   const response = await fetch("http://127.0.0.1:8000/api/token/verify/", {
     method: "POST",

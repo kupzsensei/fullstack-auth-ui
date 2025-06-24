@@ -1,7 +1,8 @@
+import { withAuth } from "./hoc/hoc-withAuth";
 import { useVerifyToken } from "./hooks/useVerifyToken";
 
 function App() {
-  useVerifyToken();
+  // useVerifyToken();
   return (
     <main>
       <h1>this is a index page</h1>
@@ -9,4 +10,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuth(App);

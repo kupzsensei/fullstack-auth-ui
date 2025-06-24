@@ -4,6 +4,9 @@ import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/login-page.jsx";
+// import { withAuth } from "./hoc/hoc-withAuth.jsx";
+
+// const PrivateRoutes = withAuth(App);
 
 const router = createBrowserRouter([
   {
