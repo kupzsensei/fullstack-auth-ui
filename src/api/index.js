@@ -26,6 +26,20 @@ export const getOTRequestAPI = async (data) => {
     },
     // body: data,
   });
+  console.log("response only", response);
+  return await response.json();
+};
+
+export const requesApprovalAPI = async (data) => {
+  console.log("who are you ? ", data);
+  const response = await fetch(`${BASE_URL}/api/request-approval/`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 
   return await response.json();
 };
