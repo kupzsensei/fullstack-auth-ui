@@ -1,12 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { withAuth } from "./hoc/hoc-withAuth";
 import { useVerifyToken } from "./hooks/useVerifyToken";
 import { useEffect, useRef, useState } from "react";
 import { getOTRequestAPI, getUserAPI, requestOvertimAPI } from "./api";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 function App() {
   const [otform, setOtform] = useState(false);
   const formRef = useRef(null);
+
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: requestOvertimAPI,
+    onSuccess: (data) => {
+      console.log(data);
+      queryClient.invalidateQueries(["overtime"]);
+      setOtform(false);
+      alert("success");
+    },
+  });
 
   const toggleOTFORM = () => {
     setOtform(!otform);
@@ -26,7 +39,8 @@ function App() {
       console.log(`${key}: ${value}`);
     }
 
-    requestOvertimAPI(postData).then((res) => console.log(res));
+    // requestOvertimAPI(postData).then((res) => console.log(res));
+    mutate(postData);
   };
 
   useEffect(() => {
@@ -51,8 +65,8 @@ function App() {
           <Link to={""}>Overtime Request</Link>
           <Link to={""}>Overtime Request</Link>
         </div>
-        <div className="flex-1 flex flex-col gap-3 justify-center items-center">
-          <h1>welcome</h1>
+        <div className="flex-1 flex flex-col gap-3 ">
+          <Outlet />
         </div>
       </section>
       {/* dialog */}
