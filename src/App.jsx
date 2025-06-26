@@ -8,6 +8,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 function App() {
   const [otform, setOtform] = useState(false);
   const formRef = useRef(null);
+  // const filesToUpload = useRef(null);
 
   const queryClient = useQueryClient();
 
@@ -89,12 +90,12 @@ function App() {
               placeholder="Reason for Overtime"
               className="border border-gray-400 p-2"
             />
-            {/* <input
-              name="file"
+            <input
+              name="files"
               type="file"
               multiple
               className="border border-gray-400 p-2"
-            /> */}
+            />
             <input
               name="time_in"
               type="time"
